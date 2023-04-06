@@ -1,0 +1,22 @@
+name: Tag Docker Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      TARGET_TAG:
+        description: "Tag of the docker image we're looking for"
+        type: "string"
+        required: true
+      NEW_TAG:
+        description: "New tag to be added to the selected docker image"
+        type: "string"
+        required: true
+
+jobs:
+  build:
+    runs-on: [self-hosted, SXB1/development]
+
+    steps:
+      - name: Echo input
+        run: echo "${{ github.event.inputs.TARGET_TAG }} and ${{ github.event.inputs.NEW_TAG }}"
+        
